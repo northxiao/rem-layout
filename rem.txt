@@ -1,0 +1,19 @@
+rem适配js代码
+<script>        
+        (function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+            };
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+ </script>
+
+根据这一句 docEl.style.fontSize =100 * (clientWidth / 750) + 'px';  可知
+
+iphone6宽度是375px，那么font-size就是100px, 100px就是1rem（要注意设计稿，如果设计稿是iphone6尺寸的，那么是2倍图，量出来的100px，在css中是50px实现的，就是0.5rem了）
